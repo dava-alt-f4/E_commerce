@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url(windows.png) no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kepala {
+    background: transparent;
+    backdrop-filter: blur(20px);
+    padding: 40px 30px;
+    border-radius: 13px;
+    border: solid 1px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 25px  rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.kepala h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: rgb(238, 227, 227);
+}
+
+.kolom {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.kolom input[type="text"],
+.kolom input[type="submit"] {
+    color: white;
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+    background: transparent;
+}
+.kolom input[type="password"] {
+    color: white;
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+.kolom input:focus + span,
+.kolom input:valid + span {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: #ededed;
+    background: transparent;
+    
+}
+.kolom span {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    padding: 0 5px;
+    color: #fffbfb;
+    transition: 0.3s ease;
+    pointer-events: none;
+}
+
+.kolom input[type="submit"] {
+    background-color: #0923b7;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.kolom input[type="submit"]:hover {
+    background-color: #6373e0;
+}
+
+p {
+    text-align: center;
+    margin-top: 15px;
+    color: #ffffff;
+}
+
+p .login {
+    color: #91eef6;
+    text-decoration: none;
+}
+</style>
+<body>
+    <div class="kepala">
+      <h2>Daftar</h2>
+      <div class="kolom">
+      <input type="text" required />
+      <span>username</span>
+     </div>
+      <div class="kolom">
+      <input type="text" required />
+      <span>email</span>
+     </div>
+      <div class="kolom">
+      <input type="password" required />
+      <span>buat password</span>
+     </div>
+     <div class="kolom">
+      <input type="password" required />
+      <span>masukan ulang password</span>
+     </div>
+     <div class="kolom">
+     <input type="submit" value="Buat akun" />
+     </div>
+     <p>Sudah memiliki akun? <a href="login.html" class="login">Masuk</a></p>
+    </div>
+</body>
+</html>
