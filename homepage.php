@@ -28,6 +28,7 @@ header {
 }
 #promo {
     min-height: 60vh;
+    padding: 10px;
 }
 #etalase {
     min-height: 100vh;
