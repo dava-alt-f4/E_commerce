@@ -1,5 +1,31 @@
 <?php
+session_start();
+$hasil = true;
+$error = '';
+if (!empty($_POST)) {
+    $pdo = require 'koneksi.php';
+    $sql = "select * from users where email = :email";
+    $query = $pdo->prepare($sql);
+    $query->execute(array('email' => $_POST['email']));
+    $user = $query->fetch();
+    if (!$user) {
+        $hasil = false;
+    } elseif(sha1($_POST['password']) != $user['password']) {
+        $hasil = false;
+        $error = "Email atau password tidak ada";
+    }else if($_POST['email'] != $user['email']){
+        $hasil = false;
+        $error = "Email atau password tidak ada";
+    } else {
+        $hasil = true;
+        $_SESSION['user']= array(
+            'id' => $user['id'],
+            'nama' => $user['nama'],
 
+        );
+        header("Location: homepage.php");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +69,11 @@
 
     .kolom {
         position: relative;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
     .kolom input[type="email"],
-    .kolom input[type="submit"] {
+    button{
         color: white;
         width: 100%;
         padding: 12px 10px;
@@ -73,9 +99,9 @@
 
     .kolom input:focus+span,
     .kolom input:valid+span {
-        top: -10px;
-        left: 10px;
-        font-size: 12px;
+        top: -20px;
+        left: 0px;
+        font-size: 15px;
         color: #ededed;
         background: transparent;
 
@@ -91,7 +117,7 @@
         pointer-events: none;
     }
 
-    .kolom input[type="submit"] {
+    button {
         background-color: #0923b7;
         color: white;
         border: none;
@@ -99,7 +125,7 @@
         transition: background 0.3s;
     }
 
-    .kolom input[type="submit"]:hover {
+    button:hover {
         background-color: #6373e0;
     }
 
@@ -113,12 +139,18 @@
         color: #91eef6;
         text-decoration: none;
     }
+    .error{
+        color: red;
+    }
 </style>
 
 <body>
-    <form action="">
+    <form action="" method="post">
         <div class="kepala">
             <h2>Login</h2>
+            <?php if($hasil == false) { ?>
+                <p class="error">Email atau password salah</p>
+            <?php } ?>
             <div class="kolom">
                 <input type="email" name="email" required />
                 <span>email</span>

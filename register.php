@@ -1,4 +1,6 @@
 <?php
+session_start();
+session_destroy();
 $error = '';
 $hasil = false;
 if (!empty($_POST)) {
